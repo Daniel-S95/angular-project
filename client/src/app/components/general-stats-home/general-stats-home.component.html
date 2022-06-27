@@ -1,0 +1,32 @@
+<div class="stats-container">
+  <img src="/assets/images/our-shop.jpg" class="stats-image" />
+
+  <div class="stats-text">
+    Currently we have {{ _productService.numberOfProducts | number }} products for sale!
+  </div>
+
+  <div class="stats-text">
+    So far, we've received {{ _orderService.numberOfOrders | number }} orders from our customers.
+  </div>
+
+  <div class="order-data" *ngIf="_stateService.isLogged">
+    <div class="order-text" *ngIf="_cartService.isCartOpen">
+      {{_stateService.firstName}}, you have an open cart from {{_cartService.cartCreationDate | date:'dd/MM/yyyy'}}
+      valued at {{_cartService.cartTotalValue | currency:'USD':'symbol':(_cartService.cartTotalValue % 1 == 0) ? '1.0-0'
+      : '1.2-2'}}!
+    </div>
+
+    <div class="order-text" *ngIf="!_cartService.isCartOpen && _orderService.lastOrderId">
+      {{_stateService.firstName}}, your last order was on {{_orderService.lastOrderDate | date:'dd/MM/yyyy'}}!
+    </div>
+
+    <div class="order-text"
+      *ngIf="!_cartService.isCartOpen && !_orderService.lastOrderId && _stateService.userType ==='USER'">
+      Welcome, {{_stateService.firstName}}! It's time to place your very first order.
+    </div>
+
+    <div class="order-text" *ngIf="_stateService.userType ==='ADMIN'">
+      Welcome, {{_stateService.firstName}}! Feel free to add or edit products.
+    </div>
+  </div>
+</div>

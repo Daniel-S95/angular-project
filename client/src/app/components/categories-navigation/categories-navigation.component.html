@@ -1,0 +1,15 @@
+<div class="flex-container row-flex categories-bar">
+  <span *ngFor="let category of _categoryService.categories" (click)="onCategoryClick(category)"
+    class="inner-flex-item category-item border-right text-center">
+    <label class="category-name"
+      [ngClass]="_categoryService.selectedCategory === category.categoryName ? 'category-name selected-category' : 'category-name'">
+      {{category.categoryName}}
+    </label>
+  </span>
+
+  <span class="inner-flex-item category-item text-center" (click)="onCategoryClick()">
+    <label class="category-name" [ngClass]="_categoryService.selectedCategory === 'All' ? 'selected-category' : ''">
+      All
+    </label>
+  </span>
+</div>

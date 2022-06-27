@@ -1,0 +1,40 @@
+.stats-container {
+  padding: 20px;
+}
+
+.order-data {
+  color: #1976D2;
+  font-weight: bold;
+}
+
+.stats-image {
+  width: 100%;
+  max-width: 450px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.order-text {
+  margin-top: 1rem;
+}
+
+@media (min-width:320px) {
+  .stats-text {
+    font-size: 0.9rem;
+  }
+
+  .order-data {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width:1024px) {
+  .stats-text {
+    font-size: 1rem;
+  }
+
+  .order-data {
+    font-size: 1rem;
+  }
+}

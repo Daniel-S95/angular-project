@@ -1,0 +1,11 @@
+<mat-list>
+  <span *ngFor="let reason of reasonsToBuy; let i = index">
+    <mat-list-item>
+      <mat-icon mat-list-icon class="icon">thumb_up</mat-icon>
+      <div>
+        <label class="reason-label">{{reason}}</label>
+      </div>
+    </mat-list-item>
+    <hr *ngIf="i !== reasonsToBuy.length - 1">
+  </span>
+</mat-list>

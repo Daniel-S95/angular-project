@@ -1,0 +1,35 @@
+<div class="header">
+  <div class="inline-flex">
+
+    <span routerLink="" class="nav-item inline-flex">
+      <img src="/assets/images/logo.png" title="FreshChoice - Your Fresh Choice!">
+    </span>
+
+    <span *ngIf="!_stateService.isLogged" routerLink="register" class="nav-item inline-flex" title="Register today">
+      <mat-icon>app_registration</mat-icon>
+      Register
+    </span>
+
+    <span *ngIf="_stateService.userType === 'ADMIN'" routerLink="admin" class="nav-item inline-flex"
+      title="Add/edit products">
+      <mat-icon>admin_panel_settings</mat-icon>
+      Admin Panel
+    </span>
+
+    <span *ngIf="_stateService.userType === 'USER'" routerLink="shop" class="nav-item inline-flex"
+      title="Start shopping">
+      <mat-icon>storefront</mat-icon>
+      Shop
+    </span>
+
+    <span routerLink="api-docs" class="nav-item inline-flex" title="API Docs">
+      <mat-icon>article</mat-icon>
+      API Docs
+    </span>
+  </div>
+
+  <div class="nav-item inline-flex logout" *ngIf="_stateService.isLogged" (click)="onLogoutClick()" title="Logout">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+.card-dimensions {
+  margin: 20px;
+  height: 100%;
+  max-width: 500px;
+}
+
+.home-container {
+  min-width: 80%;
+  max-width: 90%;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.convincing-card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.shop-label {
+  font-weight: bold;
+  color: #1976D2;
+  text-align: center;
+}
+
+.shop-button {
+  margin-top: 30px;
+  font-size: 1rem;
+}
+
+@media (min-width:320px) {
+  .home-container {
+    flex-direction: column;
+  }
+
+  .shop-label {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width:1024px) {
+  .home-container {
+    flex-direction: row;
+  }
+
+  .shop-label {
+    font-size: 1.2rem;
+  }
+}

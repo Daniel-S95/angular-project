@@ -1,0 +1,19 @@
+<ng-container *ngIf="products.length > 0">
+  <div class="flex-container row-flex">
+    <app-product-card *ngFor="let product of products" [product]="product" (productForEdit)="onProductClick($event)">
+    </app-product-card>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="products.length === 0 && _productService.searchString">
+  <div class="no-products">No products were found for
+    <label class="search-string">{{_productService.searchString}}</label>.
+  </div>
+</ng-container>
+
+<ng-container *ngIf="products.length === 0 && !_productService.searchString">
+  <div class="no-products">
+    <div>No products were found in this category.</div>
+    <div>Please try a different category.</div>
+  </div>
+</ng-container>

@@ -1,0 +1,53 @@
+<div class="login-form flex-container">
+
+  <label class="log-in-label text-center">
+    Please log in to continue:
+  </label>
+
+  <mat-form-field class="full-width" appearance="standard">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput [formControl]="emailFormControl" placeholder="email@example.com" />
+
+    <mat-error *ngIf="emailFormControl.hasError('pattern') && !emailFormControl.hasError('required')">
+      Please enter a <strong>valid</strong> email address
+    </mat-error>
+
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="standard">
+    <mat-label>Password</mat-label>
+    <input [type]="password.type" matInput [formControl]="passwordFormControl" />
+
+    <mat-error *ngIf="passwordFormControl.hasError('required')">
+      Password is <strong>required</strong>
+    </mat-error>
+    <mat-pass-toggle-visibility #password matSuffix></mat-pass-toggle-visibility>
+  </mat-form-field>
+
+  <button class="full-width log-button" mat-raised-button color="primary" (click)="onLoginClick()"
+    [disabled]="emailFormControl.invalid || passwordFormControl.invalid">
+    <mat-icon class="button-icon">login</mat-icon>
+    Log in!
+  </button>
+
+  <div class="dummy-login-data-container">
+    <div class="dummy-login-data">
+      <span class="dummy-login-header">User Type</span>
+      <span class="dummy-login-header">Email</span>
+      <span class="dummy-login-header">Password</span>
+    </div>
+
+    <div *ngFor="let user of userLoginDetails" class="dummy-login-data cursor-pointer" (click)="setUserLogin(user)"
+      title="Click to set user data and login">
+      <span>{{user.type}}</span>
+      <span>{{user.email}}</span>
+      <span>{{user.password}}</span>
+    </div>
+  </div>
+
+  <label class="not-registered text-center">Not registered?
+    <label class="register-now" routerLink="register">Register now!</label></label>
+</div>

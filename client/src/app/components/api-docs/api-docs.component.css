@@ -1,0 +1,272 @@
+.api-docs-wrapper {
+  padding: 20px 30px;
+  border-radius: 20px;
+  margin: 20px;
+  border: 1px solid #2b93ad;
+  background-color: rgb(17, 154, 191, 0.1);
+  width: calc(100% - 100px);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.api-container {
+  background-color: rgb(166, 232, 249, 0.3);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  margin: 30px auto;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.response-verbal-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.response-verbal {
+  min-width: 60px;
+  max-width: 100px;
+}
+
+.half-width {
+  width: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 10px;
+}
+
+td, th {
+  border-top: 1px solid rgba(104, 151, 187, 0.2);
+  padding: 20px 10px;
+}
+
+td {
+  border-right: 1px solid rgba(104, 151, 187, 0.15);
+}
+
+td:last-child {
+  border-right: unset;
+}
+
+th {
+  min-width: 15vw;
+  border-top: unset;
+  color: #1D648A;
+}
+
+th:nth-child(odd) {
+  background-color: #ABE0FD;
+  border-right: 1px solid rgba(108, 172, 205, 0.4);
+}
+
+th:nth-child(even) {
+  background-color: #9CDBFC;
+  border-right: 1px solid rgba(58, 144, 189, 0.4);
+}
+
+th:last-child {
+  border-right: unset;
+}
+
+th:nth-last-child(-n + 2) {
+  width: 45vw;
+}
+
+pre, .response-verbal {
+  text-align: left;
+  margin: 10px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+pre {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  border-radius: 10px;
+  padding: 15px 10px;
+  min-height: 60px;
+  display: grid;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+mat-icon {
+  margin-right: 10px;
+}
+
+.api-path-container {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.api-path-header {
+  text-decoration: underline;
+  margin-right: 7px;
+}
+
+.api-path {
+  color: #008080;
+}
+
+.api-path-params {
+  word-break: break-word;
+}
+
+.api-description {
+  font-weight: bold;
+  color: #0C4D71;
+}
+
+.api-method {
+  width: fit-content;
+  margin: 0px auto 15px auto;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.get {
+  background-color: rgb(100, 148, 237);
+}
+
+.get-row {
+  background-color: rgba(224, 233, 251, 0.6);
+}
+
+.get-row pre {
+  background-color: rgba(208, 222, 249, 0.6);
+}
+
+.post {
+  background-color: rgb(0, 148, 96);
+}
+
+.post-row {
+  background-color: rgba(204, 233, 223, 0.6);
+}
+
+.post-row pre {
+  background-color: rgba(178, 222, 207, 0.6);
+}
+
+.put {
+  background-color: rgb(236, 167, 4);
+}
+
+.put-row {
+  background-color: rgba(251, 237, 204, 0.6);
+}
+
+.put-row pre {
+  background-color: rgba(249, 228, 179, 0.6);
+}
+
+.delete {
+  background-color: rgb(193, 39, 45);
+}
+
+.delete-row {
+  background-color: rgba(242, 211, 213, 0.6);
+}
+
+.delete-row pre {
+  background-color: rgba(236, 190, 192, 0.6);
+}
+
+.full-api-url {
+  display: block;
+  color: gray;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+@media (min-width:320px) {
+  .header, mat-icon {
+    font-size: 1.25rem;
+  }
+
+  .endpoint {
+    font-size: 0.85rem;
+    margin-top: 20px;
+  }
+
+  th {
+    font-size: 0.9rem;
+    padding: 10px 5px;
+  }
+
+  .api-description {
+    font-size: 0.9rem;
+  }
+
+  .api-path-container {
+    font-size: 1.1rem;
+  }
+
+  pre, .response-verbal {
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width:481px) {
+  .header, mat-icon {
+    font-size: 1.4rem;
+  }
+
+  .endpoint {
+    font-size: 0.9rem;
+  }
+
+  .endpoint {
+    padding-left: 35px;
+  }
+}
+
+@media (min-width:768px) {
+  .header, mat-icon {
+    font-size: 1.5rem;
+  }
+
+  .endpoint {
+    font-size: 1.1rem;
+    margin: 20px auto;
+  }
+
+  th {
+    font-size: 1.2rem;
+    padding: 20px 5px;
+  }
+
+  .api-description {
+    font-size: 1.1rem;
+  }
+
+  .api-path-container {
+    font-size: 1.25rem;
+  }
+
+  td {
+    max-width: 24vmax;
+  }
+
+  pre, .response-verbal {
+    font-size: 1rem;
+  }
+}

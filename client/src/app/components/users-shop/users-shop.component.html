@@ -1,0 +1,53 @@
+<div class="wrapper-max-height">
+  <div class="shop-container">
+    <div class="cart-items-container" [style.max-height.px]="productsElementHeight" *ngIf="isCartSideNavOpen">
+      <div *ngIf="_cartService.cartItems.length > 0">
+        <app-cart-items></app-cart-items>
+      </div>
+
+      <div *ngIf="_cartService.cartItems.length === 0" class="no-items-cart">
+        <label>You have no items in your cart.</label>
+        <label>Please add an item.</label>
+      </div>
+
+      <div class="flex-container column-flex order-data" *ngIf="_cartService.cartItems.length > 0">
+        <hr>
+
+        <span class="order-total">
+          Order Total: {{calculateOrderTotal() | currency:'USD':'symbol':(calculateOrderTotal() % 1 == 0) ? '1.0-0' :
+          '1.2-2'}}
+        </span>
+
+        <div class="flex-container row-flex full-width">
+          <button class="inner-flex-item cart-button full-width" mat-raised-button color="warn"
+            title="Remove all items from cart" (click)="deleteUserCart()">
+            <mat-icon class="button-icon">delete_sweep</mat-icon>
+            Clear Cart
+          </button>
+
+          <button class="inner-flex-item cart-button full-width" routerLink="/checkout" mat-raised-button
+            color="primary" title="Proceed to checkout">
+            <mat-icon class="button-icon">shopping_cart_checkout</mat-icon>
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div [ngClass]="isCartSideNavOpen ? 'side-nav-open' : 'side-nav-closed'">
+      <div class="user-shop">
+        <div id="shopContainer">
+          <div class="full-width">
+            <app-categories-navigation></app-categories-navigation>
+
+            <app-search-bar (cartSideNavClicked)="updateCartSideNavState()"></app-search-bar>
+          </div>
+
+          <div class="flex-container row-flex" class="products-container">
+            <app-products-container [products]="_productService.products"></app-products-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

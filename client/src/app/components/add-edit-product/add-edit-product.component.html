@@ -1,0 +1,122 @@
+<form *ngIf="productData" class="form-container">
+  <mat-card class="inner-flex-item general-card">
+    <mat-card-subtitle class="card-subtitle card-title flex-container row-flex">
+      <span>
+        <label *ngIf="productData.name">{{productData.name}}</label>
+        <label *ngIf="!productData.name">Add new product</label>
+      </span>
+      <span>
+        <mat-icon class="form-icon" (click)="newProductDrawer()" title="Add new product">post_add</mat-icon>
+        <mat-icon class="form-icon" (click)="closeForm()" title="Close form">close</mat-icon>
+      </span>
+    </mat-card-subtitle>
+
+    <span class="flex-container column-flex padding-5">
+      <mat-card-subtitle class="card-title" *ngIf="productData.id">
+        <label class="card-header">ID: {{productData.id}}</label>
+      </mat-card-subtitle>
+
+      <mat-card-subtitle class="card-title full-width">
+        <span class="flex-container column-flex">
+          <mat-form-field class="input-container row-flex-inner-item full-width field-height" appearance="standard">
+            <mat-label>Product Name:</mat-label>
+            <input type="text" matInput [formControl]="productNameFormControl" placeholder="Product name"
+              maxlength="30">
+            <mat-error *ngIf="productNameFormControl.hasError('required')">
+              Product name is <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="productNameFormControl.hasError('minlength')">
+              Product name must have <strong>at least</strong> 3 characters
+            </mat-error>
+          </mat-form-field>
+        </span>
+      </mat-card-subtitle>
+
+      <mat-card-subtitle class="card-title full-width">
+        <span class="flex-container column-flex">
+          <mat-form-field appearance="standard" class="input-container row-flex-inner-item full-width field-height">
+            <mat-label>Product Category:</mat-label>
+            <select matNativeControl (change)="onCategorySelect($event)">
+              <option *ngFor="let category of _categoryService.categories" [value]="category.categoryName"
+                [selected]="selectedCategoryForEdit === category.categoryName">
+                {{ category.categoryName }}
+              </option>
+            </select>
+          </mat-form-field>
+        </span>
+      </mat-card-subtitle>
+
+
+      <mat-card-subtitle class="card-title full-width">
+        <span class="flex-container column-flex">
+          <mat-form-field class="input-container row-flex-inner-item full-width field-height" appearance="standard">
+            <mat-label>Product Price:</mat-label>
+            <input type="number" matInput [formControl]="productPriceFormControl" placeholder="Product price" min="1"
+              max="9999">
+            <mat-error *ngIf="productPriceFormControl.hasError('required')">
+              Product price is <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="productPriceFormControl.hasError('min')">
+              Product price must be <strong>above</strong> $1
+            </mat-error>
+
+            <mat-error *ngIf="productPriceFormControl.hasError('max')">
+              Product price must be <strong>lower than</strong> $9,999
+            </mat-error>
+          </mat-form-field>
+        </span>
+      </mat-card-subtitle>
+
+      <mat-card-subtitle class="card-title full-width">
+        <span class="flex-container column-flex">
+          <mat-form-field class="input-container row-flex-inner-item full-width field-height" appearance="standard">
+            <mat-label>Product Image:</mat-label>
+            <input type="text" matInput [formControl]="productImageFormControl" placeholder="Product image"
+              maxlength="250">
+            <mat-error *ngIf="productImageFormControl.hasError('required')">
+              Product image is <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="productImageFormControl.hasError('minlength')">
+              URL must have <strong>at least</strong> 3 characters
+            </mat-error>
+          </mat-form-field>
+        </span>
+      </mat-card-subtitle>
+
+      <span class="flex-container row-flex full-width flex-margin-5" *ngIf="productData.id">
+        <button class="inner-flex-item flex-margin-5 padding-0" mat-raised-button color="primary" title="Update changes"
+          (click)="updateProduct(productData.id, productNameFormControl.value, selectedCategoryForEdit, productPriceFormControl.value, productImageFormControl.value)"
+          [disabled]="productNameFormControl.value === productData.name && productImageFormControl.value === productData.imageURL && selectedCategoryForEdit === productData.categoryName && (productPriceFormControl.value | number: '1.2-2') === productData.price.toString()">
+          <mat-icon class="button-icon">send</mat-icon>
+          Save!
+        </button>
+
+        <button class="inner-flex-item flex-margin-5 padding-0" mat-raised-button color="primary" title="Undo changes"
+          (click)="editProductForm(productData)">
+          <mat-icon class="button-icon">undo</mat-icon>
+          Reset!
+        </button>
+      </span>
+
+      <span class="flex-container row-flex full-width flex-margin-5" *ngIf="!productData.id">
+        <button class="inner-flex-item flex-margin-5 padding-0" mat-raised-button color="primary"
+          title="Add new product"
+          (click)="addProduct(productNameFormControl.value, selectedCategoryForEdit, productPriceFormControl.value, productImageFormControl.value)"
+          [disabled]="!productNameFormControl.value || !productImageFormControl.value || !productPriceFormControl.value || productPriceFormControl.value > 9999">
+          <mat-icon class="button-icon">send</mat-icon>
+          Save!
+        </button>
+
+        <button class=" inner-flex-item flex-margin-5 padding-0" mat-raised-button color="primary" title="Clear form"
+          (click)="editProductForm(productData)">
+          <mat-icon class="button-icon">undo</mat-icon>
+          Reset!
+        </button>
+      </span>
+
+    </span>
+  </mat-card>
+</form>

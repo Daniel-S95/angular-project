@@ -1,0 +1,31 @@
+<div *ngFor="let cartItem of _cartService.cartItems" class="cart-item flex-container row-flex">
+  <span class="image-container">
+    <img [src]="cartItem.imageURL" class="product-image" />
+  </span>
+
+  <span class="flex-container column-flex item-description">
+    <label class="cart-item-name" *ngIf="isShop"
+      [innerHTML]="cartItem.name | charLimit:[12] | searchHighlight: searchString" [title]="cartItem.name"></label>
+
+    <label class="cart-item-name" *ngIf="!isShop"
+      [innerHTML]="cartItem.name | charLimit:[20] | searchHighlight: searchString" [title]="cartItem.name"></label>
+
+    <label title="{{cartItem.quantity | number}} x {{cartItem.price | currency:'USD':'symbol':(cartItem.price % 1
+    == 0) ? '1.0-0' : '1.2-2' }}/pc">
+      {{cartItem.quantity | number | charLimit:[11]}} x {{cartItem.price | currency:'USD':'symbol':(cartItem.price % 1
+      == 0) ? '1.0-0' : '1.2-2' }}
+      <label class="pcs-label">/pc</label>
+    </label>
+
+    <label class="total-price" [title]="cartItem.totalPrice | currency:'USD':'symbol':(cartItem.totalPrice % 1
+    == 0) ? '1.0-0' : '1.2-2'">
+      <label class="total-label">Total:</label>
+      {{cartItem.totalPrice | currency: 'USD':'symbol': (cartItem.totalPrice % 1 == 0) ? '1.0-0': '1.2-2' |
+      charLimit:[11]}}
+    </label>
+  </span>
+
+  <label title="Remove from cart" *ngIf="isShop">
+    <mat-icon (click)="deleteItemFromCart(cartItem)" class="remove-item">delete</mat-icon>
+  </label>
+</div>

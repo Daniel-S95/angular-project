@@ -1,0 +1,26 @@
+<div class="wrapper-max-height">
+  <div class="home-container">
+    <span class="inner-flex-item card-dimensions general-card" *ngIf="!_stateService.isLogged">
+      <app-login></app-login>
+    </span>
+
+    <span class="inner-flex-item card-dimensions general-card convincing-card"
+      *ngIf="_stateService.isLogged && _stateService.userType === 'USER'">
+      <div class="shop-label"> What are you waiting for? </div>
+      <div class="shop-label"> We have many products just for you! </div>
+
+      <button class="shop-button" mat-raised-button color="primary" routerLink="shop">
+        <mat-icon class="button-icon">shopping_bag</mat-icon>
+        {{_cartService.isCartOpen ? "Resume Shopping" : "Start Shopping"}}
+      </button>
+    </span>
+
+    <span class="inner-flex-item card-dimensions general-card" *ngIf="!_stateService.isLogged">
+      <app-why-from-us></app-why-from-us>
+    </span>
+
+    <span class="inner-flex-item card-dimensions text-center general-card">
+      <app-general-stats-home></app-general-stats-home>
+    </span>
+  </div>
+</div>

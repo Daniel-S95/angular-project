@@ -1,0 +1,15 @@
+<div class="search-container">
+  <div class="icon-container">
+    <mat-icon class="cart-icon" (click)="cartSideNavClicked.emit(true)" [matBadge]="this._cartService.cartItems.length"
+      matBadgeOverlap="false" title="Show/hide cart">
+      shopping_cart
+    </mat-icon>
+  </div>
+
+  <mat-form-field appearance="standard" class="search-input" ngDefaultControl [ngModel]="_productService.searchString"
+    (ngModelChange)="valueChange($event)">
+    <input matInput placeholder="Search a product..." [value]="_productService.searchString">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+</div>

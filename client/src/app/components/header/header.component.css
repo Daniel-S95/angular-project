@@ -1,0 +1,86 @@
+img {
+  height: 80%;
+  max-height: 64px;
+}
+
+.nav-item {
+  cursor: pointer;
+  color: white;
+}
+
+.header {
+  background-color: #119ABF;
+  display: flex;
+  justify-content: space-between;
+}
+
+.inline-flex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  height: inherit;
+  color: white;
+  text-align: center;
+}
+
+.logout {
+  color: #0a5c72;
+}
+
+mat-icon {
+  margin: 0px 10px;
+}
+
+@media (min-width:320px) {
+  .header {
+    padding: 0px 10px;
+    font: 500 14px/32px Roboto, "Helvetica Neue", sans-serif;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .nav-item {
+    margin: 5px 2px;
+    flex-direction: row !important;
+  }
+
+  .inline-flex {
+    flex-direction: column;
+  }
+}
+
+@media (min-width:425px) {
+  .header {
+    padding: 0px 15px;
+  }
+}
+
+@media (min-width:481px) {
+  .header {
+    padding: 0px 10px;
+    flex-direction: row;
+    font: 500 16px/32px Roboto, "Helvetica Neue", sans-serif;
+    height: 64px;
+  }
+
+  .nav-item {
+    flex-direction: row;
+    margin: 0px 5px;
+  }
+
+  .inline-flex {
+    flex-direction: row;
+  }
+}
+
+@media (min-width:641px) {
+  .header {
+    padding: 0px 30px;
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  }
+
+  .nav-item {
+    margin: 0px 10px;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="wrapper-max-height">
+  <div class="panel-container">
+    <div class="add-edit-product-container">
+      <div>
+        <app-add-edit-product *ngIf="isProductEdited" [productDataForEdit]="productToEdit"
+          (isSuccessful)="closeEditDrawer()">
+        </app-add-edit-product>
+      </div>
+
+      <div *ngIf="!isProductEdited" class="no-selected-product">
+        Please select an item to edit
+      </div>
+    </div>
+
+    <div class="shop-container">
+      <div class="full-width">
+        <app-categories-navigation></app-categories-navigation>
+      </div>
+
+      <div class="flex-container row-flex" class="products-container">
+        <app-products-container [products]="_productService.products" (productForEdit)="openEditDrawer($event)">
+        </app-products-container>
+      </div>
+    </div>
+
+  </div>
+</div>

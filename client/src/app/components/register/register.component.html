@@ -1,0 +1,155 @@
+<div class="wrapper-max-height">
+  <div class="registration-form flex-container row-flex general-card">
+    <label class="register-label">
+      Please fill this form:
+    </label>
+
+    <span *ngIf="registrationStep === 1" class="full-width">
+      <mat-form-field class="full-width input-container" appearance="standard">
+        <mat-label>ID Number:</mat-label>
+        <input type="text" matInput [formControl]="idNumberFormControl" placeholder="123456789" maxlength="9"
+          (input)="removeCharsFromString()">
+        <mat-icon matSuffix>person</mat-icon>
+
+        <mat-error *ngIf="idNumberFormControl.hasError('idInvalid') && !idNumberFormControl.hasError('required')">
+          ID number is <strong>invalid</strong>
+        </mat-error>
+        <mat-error *ngIf="idNumberFormControl.hasError('required')">
+          ID number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width input-container" appearance="standard">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl" placeholder="email@example.com" maxlength="100">
+        <mat-icon matSuffix>email</mat-icon>
+
+        <mat-error *ngIf="emailFormControl.hasError('pattern') && !emailFormControl.hasError('required')">
+          Please enter a <strong>valid</strong> email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width input-container" appearance="standard">
+        <mat-label>Password</mat-label>
+        <input [type]="password.type" matInput [formControl]="passwordFormControl" maxlength="45">
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+        <mat-pass-toggle-visibility #password matSuffix></mat-pass-toggle-visibility>
+      </mat-form-field>
+
+      <span *ngIf="passwordFormControl.dirty"
+        [ngClass]="passwordFormControl.hasError('required') ? 'password-strength-component' : 'password-strength-component margin-top-n10'">
+        <mat-password-strength #passwordComponent [min]="8" [password]="passwordFormControl.value">
+        </mat-password-strength>
+        <mat-password-strength-info [passwordComponent]="passwordComponent"> </mat-password-strength-info>
+      </span>
+
+      <mat-form-field class="full-width input-container" appearance="standard">
+        <mat-label>Repeat Password</mat-label>
+        <input [type]="repeatPassword.type" matInput [formControl]="repeatPasswordFormControl" maxlength="45" (input)="isPasswordIdentical()">
+        <mat-error *ngIf="repeatPasswordFormControl.hasError('required') && !passwordFormControl.hasError('required')">
+          You <strong>must</strong> repeat your password
+        </mat-error>
+        <mat-error
+          *ngIf="repeatPasswordFormControl.hasError('isDifferent') && !repeatPasswordFormControl.hasError('required') && !passwordFormControl.hasError('required')">
+          Password is <strong>different</strong>
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          You <strong>must</strong> enter a password in the previous field
+        </mat-error>
+        <mat-pass-toggle-visibility #repeatPassword matSuffix></mat-pass-toggle-visibility>
+      </mat-form-field>
+
+      <button class="full-width flex-item register-button" mat-raised-button color="primary"
+        [disabled]="idNumberFormControl.invalid || emailFormControl.invalid || passwordFormControl.invalid || repeatPasswordFormControl.invalid || passwordFormControl.value !== repeatPasswordFormControl.value"
+        (click)="changeRegisterStep(2)">
+        <mat-icon class="button-icon">navigate_next</mat-icon>
+        Next Step
+      </button>
+
+      <label class="already-registered-label">Already registered?
+        <span class="log-in-label" routerLink="../">Log in now!</span>
+      </label>
+    </span>
+
+    <span *ngIf="registrationStep === 2" class="full-width flex-container">
+      <mat-form-field class="full-width input-container" appearance="standard">
+        <mat-label>City</mat-label>
+        <mat-select [formControl]="citiesControl" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="citiesControl.hasError('required')">You <strong>must</strong> select a city</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width input-container" appearance="standard">
+        <mat-label>Street Address</mat-label>
+        <input type="text" matInput [formControl]="addressFormControl" maxlength="100" placeholder="Ex. Bialik Street" />
+        <mat-icon matSuffix>home</mat-icon>
+
+        <mat-error *ngIf="addressFormControl.hasError('required')">
+          Street address is <strong>required</strong>
+        </mat-error>
+
+        <mat-error *ngIf="addressFormControl.hasError('minlength')">
+          Street address must have <strong>at least</strong> 3 characters
+        </mat-error>
+      </mat-form-field>
+
+      <div class="flex-container row-flex full-width">
+        <mat-form-field class="input-container inner-flex-item margin-right-5" appearance="standard">
+          <mat-label>First Name:</mat-label>
+          <input type="text" matInput [formControl]="firstNameFormControl" placeholder="John" maxlength="45">
+          <mat-icon matSuffix>contact_mail</mat-icon>
+
+          <mat-error *ngIf="firstNameFormControl.hasError('required')">
+            First name is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
+            Please enter <strong>valid</strong> characters only
+          </mat-error>
+          <mat-error
+            *ngIf="firstNameFormControl.hasError('minlength') && !firstNameFormControl.hasError('required') && !firstNameFormControl.hasError('pattern')">
+            Please enter <strong>at least</strong> 3 characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-container inner-flex-item margin-left-5" appearance="standard">
+          <mat-label>Last Name:</mat-label>
+          <input type="text" matInput [formControl]="lastNameFormControl" placeholder="Doe" maxlength="45">
+          <mat-icon matSuffix>contact_mail</mat-icon>
+
+          <mat-error *ngIf="lastNameFormControl.hasError('required')">
+            Last name is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="lastNameFormControl.hasError('pattern') && !lastNameFormControl.hasError('required')">
+            Please enter <strong>valid</strong> characters only
+          </mat-error>
+          <mat-error
+            *ngIf="lastNameFormControl.hasError('minlength') && !lastNameFormControl.hasError('required') && !lastNameFormControl.hasError('pattern')">
+            Please enter <strong>at least</strong> 3 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="flex-container row-flex full-width">
+        <button class="inner-flex-item register-button top-margin margin-right-5" mat-raised-button color="primary"
+          (click)="changeRegisterStep(1)">
+          <mat-icon class="button-icon">navigate_before</mat-icon>
+          Go Back
+        </button>
+
+        <button class="inner-flex-item register-button top-margin margin-left-5" mat-raised-button color="primary"
+          [disabled]="citiesControl.invalid || addressFormControl.invalid || firstNameFormControl.invalid || lastNameFormControl.invalid"
+          (click)="onRegisterClick()">
+          <mat-icon class="button-icon">app_registration</mat-icon>
+          Register!
+        </button>
+      </div>
+    </span>
+  </div>
+</div>

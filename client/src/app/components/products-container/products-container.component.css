@@ -1,0 +1,25 @@
+.no-products {
+  text-align: center;
+  display: block;
+  width: 100%;
+  color: red;
+  font-weight: bold;
+  margin: 20px auto;
+  line-height: 2rem;
+}
+
+.search-string {
+  font-style: italic;
+}
+
+@media (min-width:320px) {
+  .no-products {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width:1025px) {
+  .no-products {
+    font-size: 1.2rem;
+  }
+}

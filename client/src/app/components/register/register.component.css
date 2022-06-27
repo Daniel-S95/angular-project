@@ -1,0 +1,78 @@
+.registration-form {
+  margin: 30px auto;
+  width: 450px;
+  max-width: 75%;
+  padding: 20px;
+}
+
+.register-button {
+  margin-top: 15px;
+}
+
+.margin-right-5 {
+  margin-right: 5px !important;
+}
+
+.margin-left-5 {
+  margin-left: 5px !important;
+}
+
+.register-label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.4rem;
+  width: 100%;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.already-registered-label {
+  color: rgb(98, 98, 98);
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.log-in-label {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.input-container {
+  margin: 5px auto;
+}
+
+.password-strength-component {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.margin-top-n10 {
+  margin-top: -10px;
+}
+
+textarea {
+  resize: none !important;
+}
+
+::ng-deep .mat-card:not([class*=mat-elevation-z]) {
+  background-color: #ebfefe;
+}
+
+::ng-deep .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
+  width: auto !important;
+  height: auto !important;
+}
+
+@media (min-width:320px) {
+  .already-registered-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width:481px) {
+  .already-registered-label {
+    font-size: 0.9rem;
+  }
+}

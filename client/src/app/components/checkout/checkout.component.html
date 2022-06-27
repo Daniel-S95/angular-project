@@ -1,0 +1,125 @@
+<div class="wrapper-max-height">
+  <div class="checkout-wrapper general-card" *ngIf="!isOrderSuccessful">
+    <div class="back-to-shop-container" routerLink="/shop">
+      <mat-icon class="back-to-shop-icon" title="Return to shop">
+        navigate_before</mat-icon>
+        <label class="back-to-shop-label">Return to shop</label>
+    </div>
+
+    <div class="checkout-item" style="padding-left: 0px;">
+      <div class="search-container">
+        <mat-form-field appearance="standard" class="search-field" ngDefaultControl [(ngModel)]="searchInCartItems">
+          <input matInput placeholder="Search in cart...">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <app-cart-items [searchString]="searchInCartItems"></app-cart-items>
+      </div>
+
+      <hr>
+
+      <div class="order-total text-center">
+        Order Total: {{calculateSumInObject("orderSum") | currency:'USD':'symbol':(calculateSumInObject("orderSum") % 1
+        == 0) ? '1.0-0' : '1.2-2'}}
+      </div>
+    </div>
+
+    <div class="residence-data">
+      <div class="text-bold text-center form-header margin-20">Complete your order</div>
+      <hr>
+
+      <div class="order-user-text text-center">
+        <span>Dear {{_stateService.firstName}},</span>
+        <span>In order to complete your order, please fill the following form:</span>
+      </div>
+
+      <div class="input-container">
+        <div class="inner-flex-item flex-input max-height-width">
+          <mat-form-field appearance="standard" class="user-input">
+            <mat-label>Street Address</mat-label>
+            <input type="text" matInput [formControl]="addressFormControl" (dblclick)="onStreetDoubleClick()"
+              maxlength="100" />
+            <mat-icon matSuffix>home</mat-icon>
+
+            <mat-error *ngIf="addressFormControl.hasError('required')">
+              Street address is <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="addressFormControl.hasError('minlength')">
+              Street address must have <strong>at least</strong> 3 characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="inner-flex-item flex-input max-height-width">
+          <mat-form-field appearance="standard" class="user-input">
+            <mat-label>City</mat-label>
+            <input type="text" matInput [formControl]="cityFormControl" (dblclick)="onCityDoubleClick()"
+              maxlength="45" />
+            <mat-icon matSuffix>location_city</mat-icon>
+
+            <mat-error *ngIf="cityFormControl.hasError('required')">
+              City is <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="cityFormControl.hasError('minlength')">
+              City must have <strong>at least</strong> 3 characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <div class="inner-flex-item flex-input max-height-width">
+          <mat-form-field class="user-input">
+            <mat-label>Shipping Date</mat-label>
+            <input matInput [matDatepicker]="picker" [matDatepickerFilter]="unavailableDatesFilter" [min]="minDate"
+              [max]="maxDate" [(ngModel)]="selectedDeliveryDate" disabled>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled="false" [dateClass]="dateClass"></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="inner-flex-item flex-input max-height-width">
+          <mat-form-field appearance="standard" class="user-input">
+            <mat-label>Credit Card Number</mat-label>
+            <input type="text" matInput [formControl]="creditCardFormControl" maxlength="16"
+              (input)="removeCharsFromString()" />
+            <mat-icon matSuffix>credit_card</mat-icon>
+
+            <mat-error *ngIf="creditCardFormControl.hasError('required')">
+              Credit card is <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="creditCardFormControl.hasError('pattern')">
+              Credit card is <strong>invalid</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="submit-button">
+        <button class="full-width" mat-raised-button color="primary"
+          [disabled]="addressFormControl.invalid || cityFormControl.invalid || creditCardFormControl.invalid || selectedDeliveryDate === null"
+          (click)="onSubmitOrder()">
+          <mat-icon class="button-icon">point_of_sale</mat-icon>
+          Submit Order!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-container column-flex general-card order-success" *ngIf="isOrderSuccessful">
+    <div class="text-bold form-header text-center success-inner">Your order was submitted successfully!</div>
+
+    <div class="receipt-download text-center success-inner" (click)="onDownloadReceipt()">
+      Click here to download your receipt</div>
+
+    <button class="success-inner" mat-raised-button color="primary" routerLink="">
+      <mat-icon class="button-icon">home</mat-icon>
+      Return to home page
+    </button>
+  </div>
+</div>

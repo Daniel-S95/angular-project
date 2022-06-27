@@ -1,0 +1,122 @@
+.login-form {
+  margin: auto;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.log-button {
+  margin-top: 10px;
+}
+
+.log-in-label {
+  font-weight: bold;
+  margin: 10px;
+}
+
+.not-registered {
+  color: rgb(78, 78, 78);
+}
+
+.register-now {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.dummy-login-data-container {
+  margin: 15px auto;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  color: #5481d1;
+  max-height: 150px;
+  overflow: auto;
+  word-break: break-word;
+}
+
+.dummy-login-data-container>span {
+  font-size: 1rem;
+  color: black;
+}
+
+.dummy-login-data {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.dummy-login-data>span {
+  border-color: #aec7f4 #aec7f4;
+  border-style: solid solid;
+  border-width: 1px 0px 0px 1px;
+  flex: 2 1 auto;
+  text-align: center;
+}
+
+.dummy-login-data>span:nth-child(1) {
+  max-width: 20%;
+}
+
+.dummy-login-data>span:nth-child(2) {
+  max-width: 55%;
+}
+
+.dummy-login-data>span:nth-child(3) {
+  max-width: 25%;
+}
+
+.dummy-login-data>span:last-child {
+  border-right: 1px solid #aec7f4;
+}
+
+.dummy-login-data:last-child {
+  border-bottom: 1px solid #aec7f4;
+}
+
+.dummy-login-header {
+  font-weight: bold;
+}
+
+mat-form-field {
+  margin: 5px auto;
+}
+
+@media (min-width:320px) {
+  .log-in-label {
+    font-size: 1.1rem;
+  }
+
+  .not-registered {
+    font-size: 0.8rem;
+  }
+
+  .dummy-login-data-container {
+    font-size: 0.65rem;
+  }
+
+  .dummy-login-header {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width:481px) {
+  .log-in-label {
+    font-size: 1.4rem;
+  }
+
+  .not-registered {
+    font-size: 0.9rem;
+  }
+
+  .dummy-login-header {
+    font-size: 0.85rem;
+  }
+
+  .dummy-login-data-container {
+    font-size: 0.75rem;
+  }
+}

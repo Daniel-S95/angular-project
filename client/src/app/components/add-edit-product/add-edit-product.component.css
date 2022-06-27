@@ -1,0 +1,38 @@
+.form-container {
+  display: flex;
+  height: 100%;
+  align-content: center;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+.card-subtitle {
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.general-card {
+  margin: 0px 10px;
+}
+
+.card-title {
+  font-size: 0.9rem;
+  color: black;
+}
+
+.form-icon {
+  cursor: pointer;
+}
+
+.form-icon:hover {
+  color: #1565C0;
+}
+
+.flex-margin-5 {
+  margin: 5px;
+}
+
+.padding-0 {
+  padding: 0px;
+}

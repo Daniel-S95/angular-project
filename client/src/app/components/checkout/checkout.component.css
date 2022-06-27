@@ -1,0 +1,267 @@
+.checkout-wrapper {
+  margin: 20px auto;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.checkout-item {
+  height: 100%;
+  overflow: auto;
+  padding: 0px 10px;
+}
+
+.back-to-shop-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  color: #3A91FB;
+}
+
+.back-to-shop-icon {
+  width: auto;
+  cursor: pointer;
+  height: auto;
+}
+
+.residence-data {
+  height: 100%;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.margin-20 {
+  margin: 20px 0px;
+}
+
+.order-total {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 15px 0px;
+}
+
+input {
+  font-size: 1rem;
+}
+
+.search-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.search-field {
+  margin: 0 auto;
+  display: block;
+  padding: 0px 20px;
+  height: 70px;
+}
+
+.order-user-text {
+  margin: 20px 0px;
+}
+
+.order-user-text>span {
+  display: block;
+}
+
+.flex-input {
+  display: inline-flex;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.user-input {
+  width: 80%;
+}
+
+.input-container {
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.max-height-width {
+  height: 100%;
+  width: 100%;
+}
+
+.receipt-download {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.mat-input-element:disabled {
+  color: black;
+}
+
+::ng-deep .mat-datepicker-toggle-default-icon {
+  font-size: 1.5rem;
+}
+
+::ng-deep button.unavailable-date {
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+  border-radius: 999px;
+}
+
+::ng-deep button.unavailable-date div {
+  color: #842029 !important;
+  text-decoration: line-through;
+}
+
+@media (min-width:320px) {
+  .checkout-wrapper {
+    flex-direction: column;
+  }
+
+  .back-to-shop-container {
+    font-size: 1.1rem;
+    width: 100%;
+    border-bottom: 1px solid;
+    padding: 10px 0px;
+    font-weight: 500;
+  }
+
+  .back-to-shop-label {
+    display: block;
+  }
+
+  .input-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .residence-data {
+    width: 90%;
+  }
+
+  .checkout-wrapper {
+    width: 85%;
+  }
+
+  .checkout-item {
+    border-bottom: 2px solid #559ed9;
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
+    margin-bottom: 10px;
+  }
+
+  .submit-button {
+    padding: 10px 10px 20px 10px;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .form-header {
+    font-size: 1.2rem;
+  }
+
+  .order-user-text {
+    line-height: 1.5rem;
+  }
+
+  .order-success {
+    padding: 15px 20px;
+    width: 75%;
+    max-width: 550px;
+  }
+
+  .receipt-download {
+    font-size: 0.9rem;
+  }
+
+  .success-inner {
+    margin: 7px 0px;
+  }
+}
+
+@media (min-width:641px) {
+  .residence-data {
+    width: 600px;
+  }
+
+  .checkout-wrapper {
+    width: fit-content;
+  }
+}
+
+@media (min-width:768px) {
+  .form-header {
+    font-size: 1.7rem;
+  }
+
+  .order-user-text {
+    line-height: unset;
+  }
+
+  .receipt-download {
+    font-size: unset;
+  }
+
+  .success-inner {
+    margin: 15px 0px;
+  }
+
+  .order-success {
+    padding: 30px 0px;
+  }
+}
+
+@media (min-width:1024px) {
+  .checkout-wrapper {
+    flex-direction: row;
+    height: 500px;
+  }
+
+  .back-to-shop-container {
+    font-size: 3rem;
+    width: auto;
+    border-bottom: unset;
+    padding: unset;
+    font-weight: unset;
+  }
+
+  .back-to-shop-label {
+    display: none;
+  }
+
+  .back-to-shop-icon {
+    font-size: inherit;
+  }
+
+  .input-container {
+    flex-direction: row;
+    height: 75px;
+  }
+
+  .residence-data {
+    display: grid;
+    align-items: center;
+    align-content: center;
+    padding: 20px;
+  }
+
+  .checkout-item {
+    border-bottom: 0px;
+    border-right: 2px solid #559ed9;
+    max-width: 350px;
+    height: 100%;
+    max-height: unset;
+    box-shadow: unset;
+    margin-bottom: unset;
+  }
+}

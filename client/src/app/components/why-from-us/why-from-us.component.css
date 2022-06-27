@@ -1,0 +1,37 @@
+.mat-list-base .mat-list-item {
+  height: auto;
+}
+
+.icon {
+  margin-right: 20px;
+  color: #42A5F5;
+  font-size: 1.75rem !important;
+}
+
+hr {
+  margin: 10px auto;
+}
+
+@media (min-width:320px) {
+  .reason-label {
+    font-size: 0.9rem;
+  }
+
+  mat-list {
+    padding: 15px 5px;
+  }
+
+  .mat-list-base .mat-list-item {
+    line-height: 1.4rem;
+  }
+}
+
+@media (min-width:1024px) {
+  .reason-label {
+    font-size: 1rem;
+  }
+
+  .mat-list-base .mat-list-item {
+    line-height: 1.7rem;
+  }
+}

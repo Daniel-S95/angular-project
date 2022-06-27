@@ -1,0 +1,19 @@
+<ng-container>
+  <div class="popup-text">
+    Would you like to add '<span class="product-name">{{product.name}}</span>' to your cart?
+  </div>
+
+  <div class="popup-text">
+    If so, please enter the quantity to add:
+  </div>
+  <div class="flex-container row-flex full-width">
+    <mat-icon class="icon" title="Decrease quantity" (click)="decreaseQuantity()">remove_circle</mat-icon>
+    <input class="qt-input" type="number" step="1" min="1" matInput [(ngModel)]="quantityToAdd"
+      (keyup.enter)="addItemToCart()" />
+    <mat-icon class="icon" title="Increase quantity" (click)="increaseQuantity()">add_circle</mat-icon>
+  </div>
+
+  <div class="cart-icon-container">
+    <mat-icon class="icon" title="Add to cart" (click)="addItemToCart()">add_shopping_cart</mat-icon>
+  </div>
+</ng-container>

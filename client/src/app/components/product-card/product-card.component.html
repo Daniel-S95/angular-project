@@ -1,0 +1,14 @@
+<mat-card class="inner-flex-item card-width product-card" (click)="onProductClick()">
+  <div class="flex-container row-flex">
+    <span class="image-container">
+      <img [src]="product.imageURL" class="product-image" />
+    </span>
+
+    <span class="flex-container column-flex product-data">
+      <label class="product-name card-inner" [title]="product.name">{{product.name | charLimit:[22]}}</label>
+      <label class="product-category card-inner">{{product.categoryName}}</label>
+      <label class="product-price card-inner">{{product.price | currency:'USD':'symbol':(product.price % 1 == 0) ?
+        '1.0-0' : '1.2-2'}}</label>
+    </span>
+  </div>
+</mat-card>

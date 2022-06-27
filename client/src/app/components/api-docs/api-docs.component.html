@@ -1,0 +1,65 @@
+<div class="wrapper-max-height">
+  <div class="api-docs-wrapper">
+    <div class="header">
+      <mat-icon>article</mat-icon>
+      API Documentation:
+    </div>
+
+    <div class="endpoint">
+      Endpoint: {{localhostUrl}}
+    </div>
+
+    <div *ngFor="let path of uniquePaths" class="api-container">
+      <div class="api-path-container">
+        <span class="api-path-header">Path:</span>
+        <span class="api-path">{{path}}</span>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <tbody>
+            <tr>
+              <th>Description</th>
+              <th>Method + Path</th>
+              <th>Request</th>
+              <th>Response</th>
+            </tr>
+            <ng-container *ngFor="let api of myApi">
+              <tr *ngIf="api.path === path" [class]="api. method + '-row'">
+                <td class="api-description">{{api.description}}</td>
+
+                <td>
+                  <div [class]="api.method" class="api-method">
+                    {{api.method | uppercase}}
+                  </div>
+
+                  <div class="api-path-params">
+                    {{api.params ? api.path + api.params : api.path}}<br>
+                    <label class="full-api-url">
+                      {{api.params ? localhostUrl + api.path + api.params : localhostUrl + api.path}}
+                    </label>
+                  </div>
+                </td>
+                <td>
+                  <pre>{{api.request | json}}</pre>
+                </td>
+
+                <td *ngIf="api.responseVerbal">
+                  <div class="response-verbal-container">
+                    <pre class="half-width">{{api.response | json}}</pre>
+                    <div class="response-verbal text-center">
+                      {{api.responseVerbal}}</div>
+                  </div>
+                </td>
+
+                <td *ngIf="!api.responseVerbal">
+                  <pre>{{api.response | json}}</pre>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
