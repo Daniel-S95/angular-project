@@ -29,7 +29,7 @@ export class ProductService {
   }
 
   public getProductsBySubstring(substring: string) {
-    return this._http.get(`http://localhost:3001/api/products/name/${substring}`);
+    return this._http.get(`http://localhost:3001/api/products/search/${substring}`);
   }
 
   public addProduct(newProductData: IProduct) {

@@ -16,9 +16,7 @@ export class ApiDocsComponent implements OnInit {
       description: "Create new cart",
       method: "post",
       path: "/carts",
-      request: {
-        "userId": 3
-      },
+      request: {},
       response: 4,
       responseVerbal: "Returns the cart ID"
     },
@@ -63,9 +61,8 @@ export class ApiDocsComponent implements OnInit {
       path: "/carts",
       params: "/item",
       request: {
-        "productId": 4,
-        "quantity": 1,
-        "cartId": 4
+        productId: 5,
+        quantity: 1
       },
       response: {}
     },
@@ -75,9 +72,8 @@ export class ApiDocsComponent implements OnInit {
       path: "/carts",
       params: "/:cartId",
       request: {
-        "productId": 1,
-        "quantityAdded": 1,
-        "cartItemId": 18
+        productId: 1,
+        quantityAdded: 1
       },
       response: {}
     },
@@ -142,12 +138,10 @@ export class ApiDocsComponent implements OnInit {
       method: "post",
       path: "/orders",
       request: {
-        "customerId": 3,
-        "cartId": 7,
-        "city": "Petah Tikva",
-        "streetAddress": "Dizengoff",
-        "deliveryDate": "2022-07-01",
-        "creditCard": "1234"
+        city: 'Tel Aviv',
+        streetAddress: 'Arlozoroff',
+        deliveryDate: '2022-07-09',
+        creditCard: '1111'
       },
       response: {}
     },
@@ -311,7 +305,7 @@ export class ApiDocsComponent implements OnInit {
       description: "Get products by substring",
       method: "get",
       path: "/products",
-      params: "/name/:productSubstringName",
+      params: "/search/:productSubstringName",
       request: { productSubstringName: "ea" },
       response: [
         {

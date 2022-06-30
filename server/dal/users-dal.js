@@ -12,7 +12,7 @@ async function isUserExistsByEmail(userEmail) {
     let users = await connection.executeWithParameters(sql, parameters);
 
     if (users.length === 0) {
-        return false;   
+        return false;
     }
     return true;
 }
@@ -41,7 +41,7 @@ async function userLogin(userLoginData) {
 }
 
 async function getUserData(userId) {
-    let sql = 'SELECT u.street_address AS streetAddress, u.city, sc.id AS cartId, sc.creation_date AS cartCreationDate, (MAX(o.id)) AS orderId, o.order_date as orderDate FROM users u LEFT JOIN shopping_carts sc ON sc.user_id = u.id LEFT JOIN orders o ON o.customer_id = u.id WHERE u.id = ? UNION SELECT u.street_address AS streetAddress, u.city, sc.id AS cartId, sc.creation_date AS cartCreationDate, (MAX(o.id)) AS orderId, o.order_date as orderDate FROM users u LEFT JOIN shopping_carts sc ON sc.user_id = u.id LEFT JOIN orders o ON o.customer_id = u.id WHERE u.id = ?;';
+    let sql = 'SELECT u.street_address AS streetAddress, u.city, sc.id AS cartId, sc.creation_date AS cartCreationDate, (MAX(o.id)) AS orderId, o.order_date as orderDate FROM users u LEFT JOIN shopping_carts sc ON sc.user_id = u.id LEFT JOIN orders o ON o.user_id = u.id WHERE u.id = ? UNION SELECT u.street_address AS streetAddress, u.city, sc.id AS cartId, sc.creation_date AS cartCreationDate, (MAX(o.id)) AS orderId, o.order_date as orderDate FROM users u LEFT JOIN shopping_carts sc ON sc.user_id = u.id LEFT JOIN orders o ON o.user_id = u.id WHERE u.id = ?;';
     let parameters = [userId, userId];
     let [userData] = await connection.executeWithParameters(sql, parameters);
     return userData;

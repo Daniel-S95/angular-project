@@ -42,7 +42,7 @@ router.get("/:productId", async (request, response) => {
     }
 });
 
-router.get("/name/:productSubstringName", async (request, response) => {
+router.get("/search/:productSubstringName", async (request, response) => {
     try {
         const substring = request.params.productSubstringName;
         const productsBySubstring = await productsLogic.getProductsBySubstring(substring);

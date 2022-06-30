@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICartItem } from '../models/ICartItem';
-import { IProduct } from '../models/IProduct';
 import { SnackBarService } from './snack-bar.service';
 
 @Injectable({
@@ -17,12 +16,12 @@ export class CartService {
 
   constructor(private _http: HttpClient, private _snackBarService: SnackBarService) { }
 
-  public addProductToCart(cartData: { productId: number, quantity: number, cartId: number }) {
+  public addProductToCart(cartData: { productId: number, quantity: number }) {
     return this._http.post('http://localhost:3001/api/carts/item', cartData);
   }
 
-  public createCart(userId: number) {
-    return this._http.post('http://localhost:3001/api/carts', { userId });
+  public createCart() {
+    return this._http.post('http://localhost:3001/api/carts', {});
   }
 
   public deleteCart(cartId: number) {
@@ -40,7 +39,7 @@ export class CartService {
       });
   }
 
-  public updateCartItemQuantity(cartData: { productId: number, quantityAdded: number, cartItemId: number }) {
+  public updateCartItemQuantity(cartData: { productId: number, quantityAdded: number }) {
     let cartId = this.cartId;
     return this._http.put(`http://localhost:3001/api/carts/${cartId}`, cartData);
   }

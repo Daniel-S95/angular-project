@@ -107,8 +107,6 @@ export class CheckoutComponent implements OnInit {
     }
 
     let orderData = {
-      customerId: this._stateService.userId,
-      cartId: this._cartService.cartId,
       city: this.cityFormControl.value,
       streetAddress: this.addressFormControl.value,
       deliveryDate: this.formatDate(this.selectedDeliveryDate),

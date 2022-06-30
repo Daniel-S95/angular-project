@@ -48,6 +48,13 @@ async function deleteCart(cartId) {
     await connection.executeWithParameters(sql, parameters);
 }
 
+async function getCartItemId({ productId, cartId }) {
+    let sql = "SELECT id FROM cart_products WHERE product_id = ? AND cart_id = ?;";
+    let parameters = [productId, cartId];
+    let [cartItemId] = await connection.executeWithParameters(sql, parameters);
+    return cartItemId.id;
+}
+
 module.exports = {
     addProductToCart,
     isCartExists,
@@ -55,5 +62,6 @@ module.exports = {
     updateCartItemQuantity,
     deleteCartItem,
     createCart,
-    deleteCart
+    deleteCart,
+    getCartItemId
 };

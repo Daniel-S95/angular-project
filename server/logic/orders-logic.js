@@ -1,5 +1,7 @@
 const ordersDal = require('../dal/orders-dal');
 const cartsDal = require('../dal/carts-dal');
+const usersDal = require('../dal/users-dal');
+const decodeToken = require('../utilities/decode-token');
 
 async function unavailableDates() {
     let unavailableDates = await ordersDal.unavailableDates();
@@ -7,6 +9,14 @@ async function unavailableDates() {
 }
 
 async function createOrder(orderData) {
+    let { userToken } = orderData;
+    let decodedToken = decodeToken.decodeToken(userToken);
+    let userId = decodedToken.userId;
+
+    let { cartId } = await usersDal.getUserData(userId);
+
+    orderData = { ...orderData, userId, cartId };
+
     validateOrderData(orderData);
 
     if (await ordersDal.dateAvailability(orderData.deliveryDate) >= 3) {
@@ -16,12 +26,12 @@ async function createOrder(orderData) {
     let cartItems = await cartsDal.getCartItems(orderData.cartId);
     let cartTotalPrice = cartItems.reduce((totalOrderValue, obj) => obj.totalPrice + totalOrderValue, 0);
     orderData = { ...orderData, cartTotalPrice };
-    
+
     await ordersDal.createOrder(orderData);
 }
 
 function validateOrderData(orderData) {
-    if (!orderData.customerId || !orderData.cartId) {
+    if (!orderData.userId || !orderData.cartId) {
         throw new Error('Invalid order request');
     }
 

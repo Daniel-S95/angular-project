@@ -30,7 +30,7 @@ export class ProductPopupComponent {
     if (this._cartService.isCartOpen) {
       this.checkIfProductExistsInCart(productToAdd, quantityToAdd);
     } else {
-      const createCart = this._cartService.createCart(this._stateService.userId);
+      const createCart = this._cartService.createCart();
       createCart.subscribe((cartId: number) => {
         this._cartService.cartId = cartId;
         this._cartService.isCartOpen = true;
@@ -58,7 +58,7 @@ export class ProductPopupComponent {
     if (!product || !quantity || quantity < 1) {
       return;
     }
-    let data = { productId: product.id, quantity, cartId: this._cartService.cartId };
+    let data = { productId: product.id, quantity };
 
     const addProductToCart = this._cartService.addProductToCart(data);
     addProductToCart.subscribe(() => {
@@ -79,7 +79,7 @@ export class ProductPopupComponent {
       return;
     }
 
-    let data = { productId: productToUpdate.productId, quantityAdded, cartItemId: productToUpdate.id };
+    let data = { productId: productToUpdate.productId, quantityAdded };
 
     const updateProductToCart = this._cartService.updateCartItemQuantity(data);
     updateProductToCart.subscribe(() => {

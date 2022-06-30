@@ -1,7 +1,21 @@
 const cartsDal = require('../dal/carts-dal');
 const productsDal = require('../dal/products-dal');
+const usersDal = require('../dal/users-dal');
+const decodeToken = require('../utilities/decode-token');
 
 async function addProductToCart(cartData) {
+    let { userToken } = cartData;
+    let decodedToken = decodeToken.decodeToken(userToken);
+    let userId = decodedToken.userId;
+
+    if (!userId) {
+        throw new Error('Invalid user');
+    }
+
+    let { cartId } = await usersDal.getUserData(userId);
+
+    cartData = { ...cartData, cartId };
+
     validateNewCartData(cartData);
 
     let productData = await productsDal.getProductData(cartData.productId);
@@ -32,7 +46,12 @@ async function isCartExists(userId) {
 }
 
 async function updateCartItemQuantity(cartData) {
-    let { productId, cartId, cartItemId, quantityAdded } = cartData;
+    let { productId, cartId, quantityAdded } = cartData;
+
+    let cartItemId = await cartsDal.getCartItemId({ productId, cartId });
+
+    cartData = { ...cartData, cartItemId };
+
     validateUpdateCartData(cartData);
 
     let productData = await productsDal.getProductData(productId);
@@ -55,7 +74,10 @@ async function deleteCartItem(cartItemId) {
     await cartsDal.deleteCartItem(cartItemId);
 }
 
-async function createCart(userId) {
+async function createCart(userToken) {
+    let decodedToken = decodeToken.decodeToken(userToken);
+    let userId = decodedToken.userId;
+
     if (!userId) {
         throw new Error('Invalid user');
     }

@@ -17,7 +17,7 @@ router.get("/unavailable-dates", async (request, response) => {
 
 router.post("/", async (request, response) => {
     try {
-        let orderData = request.body;
+        let orderData = { ...request.body, userToken: request.headers.authorization };
         await ordersLogic.createOrder(orderData);
         response.json();
     }

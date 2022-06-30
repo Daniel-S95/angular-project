@@ -5,8 +5,8 @@ const cartsLogic = require("../logic/carts-logic");
 
 router.post("/", async (request, response) => {
     try {
-        let { userId } = request.body;
-        const cartId = await cartsLogic.createCart(userId);
+        let userToken = request.headers.authorization;
+        const cartId = await cartsLogic.createCart(userToken);
         response.json(cartId);
     }
 
@@ -44,8 +44,7 @@ router.get("/:cartId", async (request, response) => {
 
 router.post("/item", async (request, response) => {
     try {
-        let { productId, quantity, cartId } = request.body;
-        let cartData = { productId, quantity, cartId };
+        let cartData = { ...request.body, userToken: request.headers.authorization };
         await cartsLogic.addProductToCart(cartData);
         response.json();
     }
@@ -59,7 +58,7 @@ router.post("/item", async (request, response) => {
 router.put("/:cartId", async (request, response) => {
     try {
         let cartId = +request.params.cartId;
-        let cartData = {...request.body, cartId};
+        let cartData = { ...request.body, cartId };
 
         await cartsLogic.updateCartItemQuantity(cartData);
         response.json();

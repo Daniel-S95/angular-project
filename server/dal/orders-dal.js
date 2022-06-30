@@ -7,8 +7,8 @@ async function unavailableDates() {
 }
 
 async function createOrder(orderData) {
-    let sql = "INSERT INTO orders (customer_id, cart_id, cart_total_price, city, street_address, delivery_date, credit_card_digits) VALUES (?, ?, ?, ?, ?, ?, ?);";
-    let parameters = [orderData.customerId, orderData.cartId, orderData.cartTotalPrice, orderData.city, orderData.streetAddress, orderData.deliveryDate, orderData.creditCard];
+    let sql = "INSERT INTO orders (user_id, cart_id, cart_total_price, city, street_address, delivery_date, credit_card_digits) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    let parameters = [orderData.userId, orderData.cartId, orderData.cartTotalPrice, orderData.city, orderData.streetAddress, orderData.deliveryDate, orderData.creditCard];
     await connection.executeWithParameters(sql, parameters);
 }
 
