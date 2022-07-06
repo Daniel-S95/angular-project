@@ -11,7 +11,7 @@ router.get("/unavailable-dates", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -24,7 +24,7 @@ router.post("/", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 

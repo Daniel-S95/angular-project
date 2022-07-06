@@ -11,7 +11,7 @@ router.get("/", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -24,7 +24,7 @@ router.get("/stats", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -38,7 +38,7 @@ router.get("/:productId", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -51,7 +51,7 @@ router.get("/search/:productSubstringName", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -65,7 +65,7 @@ router.get("/category/:categoryId", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -78,7 +78,7 @@ router.post("/", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -92,7 +92,7 @@ router.put("/:productId", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 

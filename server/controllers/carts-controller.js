@@ -12,7 +12,7 @@ router.post("/", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -25,7 +25,7 @@ router.delete("/:cartId", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -38,7 +38,7 @@ router.get("/:cartId", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -51,7 +51,7 @@ router.post("/item", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -66,7 +66,7 @@ router.put("/:cartId", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
@@ -79,7 +79,7 @@ router.delete("/item/:cartItemId", async (request, response) => {
 
     catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(500).send(e.message);
     }
 });
 
